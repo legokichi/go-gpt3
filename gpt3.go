@@ -30,6 +30,7 @@ const (
 type EmbeddingEngine string
 
 const (
+	GPT4                      = "gpt-4"
 	GPT3Dot5Turbo             = "gpt-3.5-turbo"
 	GPT3Dot5Turbo0301         = "gpt-3.5-turbo-0301"
 	TextSimilarityAda001      = "text-similarity-ada-001"
@@ -171,7 +172,7 @@ func (c *client) Engine(ctx context.Context, engine string) (*EngineObject, erro
 
 func (c *client) ChatCompletion(ctx context.Context, request ChatCompletionRequest) (*ChatCompletionResponse, error) {
 	if request.Model == "" {
-		request.Model = GPT3Dot5Turbo
+		request.Model = GPT4
 	}
 	request.Stream = false
 
@@ -197,7 +198,7 @@ func (c *client) ChatCompletionStream(
 	request ChatCompletionRequest,
 	onData func(*ChatCompletionStreamResponse)) error {
 	if request.Model == "" {
-		request.Model = GPT3Dot5Turbo
+		request.Model = GPT4
 	}
 	request.Stream = true
 
